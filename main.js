@@ -1,126 +1,175 @@
 alert("Bienvenido a X-CHANGE");
 
 let operacion;
-let moneda=0;
-let cantidad=0;
-const compra = 1;
-const venta = 2;
+let cantidad = 0;
 let tipo_cambio;
 let resultado = 0;
+let acum_ars = 0,
+  acum_usd = 0,
+  acum_gbp = 0,
+  acum_brl = 0,
+  acum_eur = 0;
 let continuar;
 
-let dolar_compra = 950;
-let dolar_venta = 1050;
-let libra_compra = 1100;
-let libra_venta = 1150;
-let real_compra = 450;
-let real_venta = 550;
-let euro_compra = 1080;
-let euro_venta = 1180;
-
-do{
-
-operacion = prompt("Ingrese tipo de operacion (1-compra/2-venta)");
-
-console.log(operacion);
-
-moneda = prompt("Ingrese el código de la moneda que desea cambiar\n(1-Libra/2-Dolar/3-Real/4-Euro)");
-
-console.log(moneda);
+// El "iso" (ISO 4217) es la norma internacional que establece los códigos estandarizados de las monedas de los diferentes países del mundo
 
 
-operacion = parseInt(operacion);
+//declaracion de monedas como objetos 
 
+const dolar = {
+  codigo: 2,
+  iso: "usd",
+  compra: 1000,
+  venta: 1200,
+};
+const libra = {
+  codigo: 1,
+  iso: "gbp",
+  compra: 1350,
+  venta: 1600,
+};
+const real = {
+  codigo: 3,
+  iso: "brl",
+  compra: 1000,
+  venta: 1050,
+};
+const euro = {
+  codigo: 4,
+  iso: "eur",
+  compra: 1250,
+  venta: 1500,
+};
 
-function operar_compra(cotizacion, cantidad) {
-    res = cotizacion * cantidad
-    return res
-}
+//declaracion de array de objetos 
 
-function operar_venta(cantidad,cotizacion) {
-    res = cantidad/cotizacion
-    return res
-}
+const moneda = [dolar, real, euro, libra];
 
-function mostrar(mensaje) {
-    alert(mensaje)
-    console.log(mensaje)
-}
+// Ordenamiento del array por codigo
 
-//el tipo de operacion se ve desde el lado de la entidad 
+moneda.sort((a, b) => a.codigo - b.codigo);
 
-if(operacion!=1 && operacion!=2){
-    alert("opcion invalida")
-}else{
-    if (operacion == 1) {
-    switch (moneda) {
-        case '1':
-            cantidad = prompt("Ingrese la cantidad de libras a cambiar");
-            console.log(cantidad);
-            tipo_cambio = libra_compra;
-            resultado=operar_compra(tipo_cambio, cantidad);
-            mostrar("Usted recibe " + resultado.toFixed(2) + " pesos");
-            break;
-        case '2':
-            cantidad = prompt("Ingrese la cantidad de Dolares a cambiar");
-            console.log(cantidad);
-            tipo_cambio = dolar_compra;
-            resultado=operar_compra(tipo_cambio, cantidad);
-            mostrar("Usted recibe " + resultado.toFixed(2)  + " pesos");
-            break;
-        case '3':
-            cantidad = prompt("Ingrese la cantidad de Reales a cambiar");
-            console.log(cantidad);
-            tipo_cambio = real_compra;
-            resultado=operar_compra(tipo_cambio, cantidad);
-            mostrar("Usted recibe " + resultado.toFixed(2)  + " pesos");
-            break;
-        case '4':
-            cantidad = prompt("Ingrese la cantidad de Euros a cambiar");
-            console.log(cantidad);
-            tipo_cambio = euro_compra;
-            resultado=operar_compra(tipo_cambio, cantidad);
-            mostrar("Usted recibe " + resultado.toFixed(2)  + " pesos");
-            break;
-        default:
-            console.log("Opción inválida");
-            break;
-        }
-    } else {
-    switch (moneda) {
-        case '1':
-            cantidad = prompt("Ingrese la cantidad de Pesos a cambiar");
-            console.log(cantidad);
-            tipo_cambio = libra_venta;
-            resultado=operar_venta(cantidad,tipo_cambio);
-            mostrar("Usted recibe " + resultado.toFixed(2)  + " Libras");
-            break;
-        case '2':
-            cantidad = prompt("Ingrese la cantidad de Pesos a cambiar");
-            console.log(cantidad);
-            tipo_cambio = dolar_venta;
-            resultado=operar_venta(cantidad,tipo_cambio);
-            mostrar("Usted recibe " + resultado.toFixed(2)  + " Dolares");
-            break;
-        case '3':
-            cantidad = prompt("Ingrese la cantidad de Pesos a cambiar");
-            console.log(cantidad);
-            tipo_cambio = real_venta;
-            resultado=operar_venta(cantidad,tipo_cambio);
-            mostrar("Usted recibe " + resultado.toFixed(2)  + " Reales");
-            break;
-        case '4':
-            cantidad = prompt("Ingrese la cantidad de Pesos a cambiar");
-            console.log(cantidad);
-            tipo_cambio = euro_venta;
-            resultado=operar_venta(cantidad,tipo_cambio);
-            mostrar("Usted recibe " + resultado.toFixed(2)  + " Euros");
-            break;
-        default:
-            console.log("Opción inválida");
-            break;
-        }
+do {
+  function mostrarTablaEnAlert(arr) {
+    let tableString = "Código | ISO | Compra | Venta\n";
+    for (const moneda of arr) {
+      tableString += `${moneda.codigo}|----->${moneda.iso} |    ${moneda.compra} |    ${moneda.venta}\n`;
     }
-}
-continuar = confirm("¿Desea realizar otra operación?");
+    alert(tableString);
+  }
+
+  mostrarTablaEnAlert(moneda);
+
+  operacion = prompt("Ingrese tipo de operacion (1-compra/2-venta)");
+
+  // Comprobacion para arreglar el error de la primer pre-entrega
+  if (operacion != 1 && operacion != 2) {
+    console.log("no existe el tipo de operacion ingresada");
+    alert("no existe el tipo de operacion ingresada");
+  } else {
+    console.log(operacion);
+
+    seleccion = prompt(
+      "Ingrese el código de la moneda que desea cambiar\n(1-Libra/2-Dolar/3-Real/4-Euro)"
+    );
+
+    console.log(seleccion);
+
+    //busqueda de moneda por codigo en el array para luego operar
+
+    const monedaEncontrada = moneda.find((m) => m.codigo == parseInt(seleccion));
+
+    operacion = parseInt(operacion);
+
+    function operar_compra(cotizacion, cantidad) {
+      res = cotizacion * cantidad;
+      return res;
+    }
+
+    function operar_venta(cantidad, cotizacion) {
+      res = cantidad / cotizacion;
+      return res;
+    }
+
+    function mostrar(mensaje) {
+      alert(mensaje);
+      console.log(mensaje);
+    }
+
+    function mostrarAcumuladoPorMoneda(acumulado, iso) {
+        alert(`Ud recibe en ${iso}: ${acumulado.toFixed(2)}`);
+        console.log(`Ud recibe en ${iso}: ${acumulado.toFixed(2)}`);
+      }
+      
+      
+      
+
+    // El tipo de operacion se ve desde el lado de la entidad
+    if (operacion != 1 && operacion != 2) {
+      alert("opcion invalida");
+    } else {
+      if (operacion == 1) {
+        cantidad = parseFloat(
+          prompt(`Ingrese la cantidad de ${monedaEncontrada.iso} a cambiar`)
+        );
+        tipo_cambio = monedaEncontrada.compra;
+        resultado = operar_compra(tipo_cambio, cantidad);
+        mostrar(`Usted recibe ${resultado.toFixed(2)} pesos`);
+        acum_ars += resultado;
+      } else {
+        cantidad = parseFloat(
+          prompt(`Ingrese la cantidad de pesos a cambiar a ${monedaEncontrada.iso}`)
+        );
+        tipo_cambio = monedaEncontrada.venta;
+        resultado = operar_venta(cantidad, tipo_cambio);
+        mostrar(`Usted recibe ${resultado.toFixed(2)} ${monedaEncontrada.iso}`);
+        switch (monedaEncontrada.codigo) {
+          case 1:
+            acum_gbp += resultado;
+            acum_ars-=cantidad;
+            break;
+          case 2:
+            acum_usd += resultado;
+            acum_ars-=cantidad;
+            break;
+          case 3:
+            acum_brl += resultado;
+            acum_ars-=cantidad;
+            break;
+          case 4:
+            acum_eur += resultado;
+            acum_ars-=cantidad;
+            break;
+        }
+      }
+    }
+  }
+  continuar = confirm("¿Desea realizar otra operación?");
 } while (continuar);
+
+if(acum_ars>0){
+    mostrar(`Se acreditara en el CBU declarado la suma de ${acum_ars.toFixed(2)} pesos`);
+}else{
+
+    mostrar(`Se debitara de su cuenta la suma de ${Math.abs(acum_ars).toFixed(2)} pesos`);
+}
+
+if (acum_gbp > 0) {
+    mostrarAcumuladoPorMoneda(acum_gbp, "GBP");
+  }
+  
+  if (acum_usd > 0) {
+    mostrarAcumuladoPorMoneda(acum_usd, "USD");
+  }
+  
+  if (acum_brl > 0) {
+    mostrarAcumuladoPorMoneda(acum_brl, "BRL");
+  }
+  
+  if (acum_eur > 0) {
+    mostrarAcumuladoPorMoneda(acum_eur, "EUR");
+  }
+  
+  
+
+mostrar("Gracias por utilizar los servicios de grupo x-change");
