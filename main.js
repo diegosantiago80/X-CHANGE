@@ -1,175 +1,175 @@
 alert("Bienvenido a X-CHANGE");
 
-let operacion;
-let cantidad = 0;
-let tipo_cambio;
-let resultado = 0;
-let acum_ars = 0,
-  acum_usd = 0,
-  acum_gbp = 0,
-  acum_brl = 0,
-  acum_eur = 0;
-let continuar;
+document.addEventListener('DOMContentLoaded', function () {
+  
+  const formularioCliente = document.getElementById('clienteForm');
 
-// El "iso" (ISO 4217) es la norma internacional que establece los códigos estandarizados de las monedas de los diferentes países del mundo
+  // evento para el envío del formulario
+  formularioCliente.addEventListener('submit', function (event) {
+      event.preventDefault(); // Evitar que el formulario se envíe
 
+      // Obtener los valores del formulario
+      const nombre = document.getElementById('nombre').value;
+      const apellido = document.getElementById('apellido').value;
+      const dni = document.getElementById('dni').value;
+      const email = document.getElementById('email').value;
 
-//declaracion de monedas como objetos 
+      // Mostrar mensaje al usuario
+      alert('Cliente registrado');
 
-const dolar = {
-  codigo: 2,
-  iso: "usd",
-  compra: 1000,
-  venta: 1200,
-};
-const libra = {
-  codigo: 1,
-  iso: "gbp",
-  compra: 1350,
-  venta: 1600,
-};
-const real = {
-  codigo: 3,
-  iso: "brl",
-  compra: 1000,
-  venta: 1050,
-};
-const euro = {
-  codigo: 4,
-  iso: "eur",
-  compra: 1250,
-  venta: 1500,
-};
+      // Obtener los datos del localStorage (si existen)
+      let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
 
-//declaracion de array de objetos 
+      // Agregar el nuevo cliente a la lista
+      const nuevoCliente = {
+          nombre,
+          apellido,
+          dni,
+          email
+      };
+      clientes.push(nuevoCliente);
 
-const moneda = [dolar, real, euro, libra];
+      // Convierto a JSON y almaceno en localStorage
+      localStorage.setItem('clientes', JSON.stringify(clientes));
+  });
+});
 
-// Ordenamiento del array por codigo
+// declaro las monedas como objetos 
 
-moneda.sort((a, b) => a.codigo - b.codigo);
+const dolar = { codigo: 2, iso: "usd", compra: 1000, venta: 1200 };
+const libra = { codigo: 1, iso: "gbp", compra: 1350, venta: 1600 };
+const real = { codigo: 3, iso: "brl", compra: 950, venta: 1050 };
+const euro = { codigo: 4, iso: "eur", compra: 1250, venta: 1500 };
 
-do {
-  function mostrarTablaEnAlert(arr) {
-    let tableString = "Código | ISO | Compra | Venta\n";
-    for (const moneda of arr) {
-      tableString += `${moneda.codigo}|----->${moneda.iso} |    ${moneda.compra} |    ${moneda.venta}\n`;
-    }
-    alert(tableString);
+// Función para obtener el cliente almacenado en el localStorage
+function obtenerClienteAlmacenado() {
+    const clienteAlmacenado = localStorage.getItem('clientes');
+    return clienteAlmacenado ? JSON.parse(clienteAlmacenado) : [];
   }
 
-  mostrarTablaEnAlert(moneda);
+  // Función para mostrar el resultado con el nombre del cliente
+  function mostrarResultadoConCliente(resultado, monedaRecepcion) {
+    // Obtengo el cliente almacenado
+    const clientes = obtenerClienteAlmacenado();
 
-  operacion = prompt("Ingrese tipo de operacion (1-compra/2-venta)");
+    // Obtengo el último cliente registrado
+    const ultimoCliente = clientes.length > 0 ? clientes[clientes.length - 1] : null;
 
-  // Comprobacion para arreglar el error de la primer pre-entrega
-  if (operacion != 1 && operacion != 2) {
-    console.log("no existe el tipo de operacion ingresada");
-    alert("no existe el tipo de operacion ingresada");
-  } else {
-    console.log(operacion);
+    // Creo la leyenda cliente/moneda
+    const leyenda = ultimoCliente
+      ? `Cliente: ${ultimoCliente.nombre} ${ultimoCliente.apellido} recibe: ${resultado.toFixed(0)} ${monedaRecepcion}`
+      : `Cliente no registrado recibe: ${resultado.toFixed(0)} ${monedaRecepcion}`;
 
-    seleccion = prompt(
-      "Ingrese el código de la moneda que desea cambiar\n(1-Libra/2-Dolar/3-Real/4-Euro)"
-    );
-
-    console.log(seleccion);
-
-    //busqueda de moneda por codigo en el array para luego operar
-
-    const monedaEncontrada = moneda.find((m) => m.codigo == parseInt(seleccion));
-
-    operacion = parseInt(operacion);
-
-    function operar_compra(cotizacion, cantidad) {
-      res = cotizacion * cantidad;
-      return res;
-    }
-
-    function operar_venta(cantidad, cotizacion) {
-      res = cantidad / cotizacion;
-      return res;
-    }
-
-    function mostrar(mensaje) {
-      alert(mensaje);
-      console.log(mensaje);
-    }
-
-    function mostrarAcumuladoPorMoneda(acumulado, iso) {
-        alert(`Ud recibe en ${iso}: ${acumulado.toFixed(2)}`);
-        console.log(`Ud recibe en ${iso}: ${acumulado.toFixed(2)}`);
-      }
-      
-      
-      
-
-    // El tipo de operacion se ve desde el lado de la entidad
-    if (operacion != 1 && operacion != 2) {
-      alert("opcion invalida");
-    } else {
-      if (operacion == 1) {
-        cantidad = parseFloat(
-          prompt(`Ingrese la cantidad de ${monedaEncontrada.iso} a cambiar`)
-        );
-        tipo_cambio = monedaEncontrada.compra;
-        resultado = operar_compra(tipo_cambio, cantidad);
-        mostrar(`Usted recibe ${resultado.toFixed(2)} pesos`);
-        acum_ars += resultado;
-      } else {
-        cantidad = parseFloat(
-          prompt(`Ingrese la cantidad de pesos a cambiar a ${monedaEncontrada.iso}`)
-        );
-        tipo_cambio = monedaEncontrada.venta;
-        resultado = operar_venta(cantidad, tipo_cambio);
-        mostrar(`Usted recibe ${resultado.toFixed(2)} ${monedaEncontrada.iso}`);
-        switch (monedaEncontrada.codigo) {
-          case 1:
-            acum_gbp += resultado;
-            acum_ars-=cantidad;
-            break;
-          case 2:
-            acum_usd += resultado;
-            acum_ars-=cantidad;
-            break;
-          case 3:
-            acum_brl += resultado;
-            acum_ars-=cantidad;
-            break;
-          case 4:
-            acum_eur += resultado;
-            acum_ars-=cantidad;
-            break;
-        }
-      }
-    }
+    // Muestro la leyenda en el div "resultado"
+    document.getElementById('resultado').innerText = leyenda;
   }
-  continuar = confirm("¿Desea realizar otra operación?");
-} while (continuar);
 
-if(acum_ars>0){
-    mostrar(`Se acreditara en el CBU declarado la suma de ${acum_ars.toFixed(2)} pesos`);
-}else{
 
-    mostrar(`Se debitara de su cuenta la suma de ${Math.abs(acum_ars).toFixed(2)} pesos`);
+function operar_compra(cotizacion, cantidad) {
+  return cotizacion * cantidad;
 }
 
-if (acum_gbp > 0) {
-    mostrarAcumuladoPorMoneda(acum_gbp, "GBP");
-  }
-  
-  if (acum_usd > 0) {
-    mostrarAcumuladoPorMoneda(acum_usd, "USD");
-  }
-  
-  if (acum_brl > 0) {
-    mostrarAcumuladoPorMoneda(acum_brl, "BRL");
-  }
-  
-  if (acum_eur > 0) {
-    mostrarAcumuladoPorMoneda(acum_eur, "EUR");
-  }
-  
+function operar_venta(cantidad, cotizacion) {
+  return cantidad / cotizacion;
+}
+
+ // Función para borrar los datos de la última operación
+function borrarUltimaOperacion() {
+    // Limpiar el contenido del div "resultado"
+    document.getElementById('resultado').innerText = '';
+}
+
+
+// Agrego un botón para borrar la última operación
+  const botonBorrar = document.createElement('button');
+  botonBorrar.className = 'btn';
+  botonBorrar.innerText = 'Borrar última operación';
+  botonBorrar.addEventListener('click', borrarUltimaOperacion);
   
 
-mostrar("Gracias por utilizar los servicios de grupo x-change");
+  const botonBorrarContainer = document.getElementById('botonBorrarContainer');
+  botonBorrarContainer.appendChild(botonBorrar);
+
+
+  // Actualizo llamada a la función mostrarResultado para incluir al cliente
+  function calcularCompra() {
+    const cantidad = parseFloat(document.getElementById('cantidadCompra').value);
+    const monedaPago = document.getElementById('monedaPagoCompra').value;
+    const monedaRecepcion = document.getElementById('monedaRecepcionCompra').value;
+
+    let cotizacion;
+
+            // Obtenengo la cotización según la moneda de pago
+            switch (monedaPago) {
+                case 'usd':
+                    cotizacion = dolar.compra;
+                    break;
+                case 'gbp':
+                    cotizacion = libra.compra;
+                    break;
+                case 'brl':
+                    cotizacion = real.compra;
+                    break;
+                case 'eur':
+                    cotizacion = euro.compra;
+                    break;
+                default:
+                    cotizacion = 1;
+            }
+
+    const resultadoCompra = operar_compra(cotizacion, cantidad);
+    mostrarResultadoConCliente(resultadoCompra, monedaRecepcion);
+  }
+
+
+  function calcularVenta() {
+    const cantidad = parseFloat(document.getElementById('cantidadVenta').value);
+    const monedaPago = document.getElementById('monedaPagoVenta').value;
+    const monedaRecepcion = document.getElementById('monedaRecepcionVenta').value;
+
+    let cotizacion;
+      
+          // Obtenengo la cotización según la moneda de recepción
+          switch (monedaRecepcion) {
+              case 'usd':
+                  cotizacion = dolar.venta;
+                  break;
+              case 'gbp':
+                  cotizacion = libra.venta;
+                  break;
+              case 'brl':
+                  cotizacion = real.venta;
+                  break;
+              case 'eur':
+                  cotizacion = euro.venta;
+                  break;
+              default:
+                  cotizacion = 1;
+          }
+      
+    const resultadoVenta = operar_venta(cantidad, cotizacion);
+    mostrarResultadoConCliente(resultadoVenta, monedaRecepcion);
+  }
+
+  //funcion para mostrar la tabla de cotizaciones 
+      
+  function mostrarCotizaciones() {
+    const cotizacionesTabla = document.getElementById('cotizacionesTabla');
+    const cotizaciones = [
+        { moneda: 'USD', compra: 1000, venta: 1200, bandera: '🇺🇸' },
+        { moneda: 'GBP', compra: 1350, venta: 1600, bandera: '🇬🇧' },
+        { moneda: 'BRL', compra: 950, venta: 1050, bandera: '🇧🇷' },
+        { moneda: 'EUR', compra: 1250, venta: 1500, bandera: '🇪🇺' }
+    ];
+
+    const cotizacionesBody = document.getElementById('cotizacionesBody');
+    cotizacionesBody.innerHTML = ''; // Limpiar contenido previo
+
+    cotizaciones.forEach(cotizacion => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${cotizacion.bandera} ${cotizacion.moneda}</td><td>${cotizacion.compra}</td><td>${cotizacion.venta}</td>`;
+        cotizacionesBody.appendChild(row);
+    });
+    // Cambiar el estilo directamente
+    cotizacionesTabla.style.display = cotizacionesTabla.style.display === 'none' ? 'block' : 'none';
+}
