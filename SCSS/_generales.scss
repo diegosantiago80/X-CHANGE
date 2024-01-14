@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+  background-color:gray;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+
+.logo {
+  max-width: 100px; 
+  height: auto; 
+}
+
+#cotizacionesTabla {
+  display: none;
+  margin-top: 20px;
+  width: 100%;
+  background-color:grey;
+  margin: auto;
+  text-align: center;
+}
+
+#cotizacionesTabla table {
+  width: 100%;
+  background-color:rgb(3, 139, 148);
+  margin: auto;
+ 
+}
+
+#cotizacionesBody td {
+  padding: 8px;
+  background-color:turquoise
+}

@@ -1,0 +1,47 @@
+footer {
+    background-color:#774caf;
+    text-align: center;
+    padding: 25px;
+  }
+
+
+  footer .social-links a:hover,
+  footer .copyright a:hover,
+  footer .legal-links a:hover,
+  footer .support-contact a:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s;
+    
+  }
+  
+  footer input:focus {
+    background-color: blanchealmond;
+  }
+  footer textarea:focus {
+    background-color: blanchealmond;
+  }
+  footer input[type=submit]:focus {
+    background-color: #111111;
+  }
+  footer input[type=reset]:focus {
+    background-color: #111111;
+  }
+  
+  .footer-container {
+    text-align: center;
+    margin: 0 auto;
+  
+  }
+  .footer-container > div {
+    display: inline-block;
+    margin-right: 30px;
+  }
+  
+  a{
+    color:#ffffff;
+  }
+
+  
+a:hover{
+  color:aquamarine;
+}

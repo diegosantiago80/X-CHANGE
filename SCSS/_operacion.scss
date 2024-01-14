@@ -1,0 +1,71 @@
+.operacion{
+    margin:30px auto;
+    background-color: gray;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+.btn {
+    background-color: #774caf; 
+    color: white;
+    border-color: #af4c74; 
+}
+
+.operacionesContainer{
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 20px;
+}
+
+.compra,
+.venta {
+    width: 48%; 
+}
+
+.operacion {
+    border: 1px solid #ccc; 
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+
+#resultado{
+    text-align: center;
+    background-color:turquoise;
+    font-size: x-large;
+}
+
+#btnVerOperaciones {
+    display: block; 
+    margin: 0 auto; 
+    margin-top: 10px; 
+    width: fit-content; 
+    margin-bottom: 50px;
+  }
+  
+  #operacionesTabla {
+    display: none;
+    margin-top: 50px;
+    width: 100%;
+    background-color:grey;
+    margin: auto;
+    text-align: center;
+  }
+  
+  #operacionesTabla table {
+    width: 100%;
+    background-color:rgb(3, 139, 148);
+    margin: auto;
+   
+  }
+  
+  #operacionesBody td {
+    padding: 8px;
+    background-color:turquoise
+  }
+
+

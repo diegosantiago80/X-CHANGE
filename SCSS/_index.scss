@@ -1,0 +1,50 @@
+form {
+    display: flex;
+    flex-direction: column;
+  }
+
+.cliente {
+    margin:30px auto;
+    background-color: gray;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  .ClienteFormContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    padding-top: 100px; 
+  }
+  
+  .cliente {
+    width: 45%;
+    margin: 10px;
+  }
+  
+  .ClienteForm {
+    width: 100%; 
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+ 
+  .ClienteForm h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .ClienteForm input,
+  .ClienteForm button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  

@@ -1,0 +1,33 @@
+{
+  "monedas": [
+    {
+      "codigo": 1,
+      "iso": "GBP",
+      "compra": 1350,
+      "venta": 1600,
+      "bandera": "🇬🇧"
+    },
+    {
+      "codigo": 2,
+      "iso": "USD",
+      "compra": 890,
+      "venta": 990,
+      "bandera": "🇺🇸"
+    },
+    {
+      "codigo": 3,
+      "iso": "BRL",
+      "compra": 290,
+      "venta": 350,
+      "bandera": "🇧🇷"
+    },
+    {
+      "codigo": 4,
+      "iso": "EUR",
+      "compra": 1000,
+      "venta": 1250,
+      "bandera": "🇪🇺"
+    }
+  ]
+}
+

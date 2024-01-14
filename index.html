@@ -7,12 +7,16 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="Styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js" integrity="sha256-iSkyJ41luwYhZX4JnDUop92wix0y8SBGAW5tCnnCfZ4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
+    <link rel="stylesheet" href="./STYLES/Styles.css">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css" integrity="sha256-ZCK10swXv9CN059AmZf9UzWpJS34XvilDMJ79K+WOgc=" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/9090eea6b1.js" crossorigin="anonymous"></script>
+    <script src="./JS/main.js" defer></script>
     <title>X-change</title>
 </head>
 <body>
@@ -30,7 +34,6 @@
     </header>
     <main>
         <div id="cotizacionesTabla" style="display: none;">
-            <h2>Cotizaciones</h2>
             <table border="1">
                 <thead>
                     <tr>
@@ -43,75 +46,45 @@
                 </tbody>
             </table>
         </div>
-        <form class="cliente" id="clienteForm">
-            <input type="text" id="nombre" placeholder="Ingrese su nombre" required>
-            <input type="text" id="apellido" placeholder="Ingrese su apellido" required>
-            <input type="text" id="dni" placeholder="Ingrese su numero de DNI" required>
-            <input type="email" id="email" placeholder="Ingrese su e-mail" required>
-            <input class="btn" type="reset" value="Limpiar">
-            <input class="btn" type="submit" value="Confirmar datos">
-        </form>
-        <div class="operacionesContainer">
-            <div class="compra">
-                <form class="operacion" id="compraForm">
-                    <h2>COMPRA</h2>
-                    <input type="text" id="cantidadCompra" placeholder="Cantidad a cambiar" required>
-                    <select class="form-select" id="monedaPagoCompra" aria-label="Moneda de pago" required>
-                        <option selected>Moneda de pago</option>
-                        <option value="gbp">GBP</option>
-                        <option value="usd">USD</option>
-                        <option value="brl">BRL</option>
-                        <option value="eur">EUR</option>
-                    </select>
-                    <input type="text" id="monedaRecepcionCompra" value="ARS" readonly>
-                    <button class="btn" type="button" onclick="calcularCompra()">Calcular</button>
-                </form>
-            </div>
-            <div id="botonBorrarContainer"></div>
-    
-            <div class="venta">
-                <form class="operacion" id="ventaForm">
-                    <h2>VENTA</h2>
-                    <input type="text" id="cantidadVenta" placeholder="Cantidad a cambiar" required>
-                    <input type="text" id="monedaPagoVenta" value="ARS" readonly>
-                    <select class="form-select" id="monedaRecepcionVenta" aria-label="Moneda de recepción" required>
-                        <option selected>Moneda de recepción</option>
-                        <option value="gbp">GBP</option>
-                        <option value="usd">USD</option>
-                        <option value="brl">BRL</option>
-                        <option value="eur">EUR</option>
-                    </select>
-                    <button class="btn" type="button" onclick="calcularVenta()">Calcular</button>
-                </form>
-            </div>
+        <div class="ClienteFormContainer">
+            <form class="cliente" id="NuevoClienteForm">
+                <h2>CLIENTE NUEVO</h2>
+                <input type="text" id="nombre" placeholder="Ingrese su nombre" required>
+                <input type="text" id="apellido" placeholder="Ingrese su apellido" required>
+                <input type="text" id="dni" placeholder="Ingrese su numero de DNI" required>
+                <input type="email" id="email" placeholder="Ingrese su e-mail" required>
+                <input type="text" id="usuario" placeholder="crear usuario" required>
+                <input type="password" id="password" placeholder="crear contraseña" required>
+                <input class="btn" type="reset" value="Limpiar">
+                <input class="btn" type="submit" value="Confirmar datos">
+            </form>
+            <form class="cliente" id="clienteForm">
+                <h2>LOGIN</h2>
+                <input type="text" id="usuario2" placeholder="Ingrese su usuario" required>
+                <input type="password" id="password2" placeholder="Ingrese su contraseña" required>
+                <input class="btn" type="reset" value="Limpiar">
+                <input class="btn" type="submit" value="Confirmar datos">
+            </form>
         </div>
-        <div id="resultado"></div>
     </main>
     <div>
     <footer class="footer">
       <div class="footer-container">
-          <!--Enlaces de redes sociales -->
-          <div class="social-links">
-              <a href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="fa-brands fa-facebook fa-fade"></i></a>
-              <a href="https://twitter.com/?lang=es" target="_blank"><i class="fa-brands fa-x-twitter fa-fade"></i></a>
-              <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram fa-fade"></i></a>
-          </div>
-
-          <!--Enlaces a políticas legales -->
-          <div class="legal-links">
-              <a href="politica-de-privacidad.html">Política de Privacidad</a>
-          </div>
-
-          <!--Información de copyright -->
-          <div class="copyright">
-              <a href="Copyright">X-CHANGE©</a>
-          </div>
-          <!--Información de contacto de soporte -->
-          <div class="support-contact">
-              <a href="tel:+541155556666">Soporte: (+54) 911-5555-6666</a> | <a href="mailto:soporte@xchange.com.ar">soporte@xchange.com.ar</a>
-            </div>
-        </footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="fa-brands fa-facebook fa-fade"></i></a>
+            <a href="https://twitter.com/?lang=es" target="_blank"><i class="fa-brands fa-x-twitter fa-fade"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram fa-fade"></i></a>
+        </div>
+        <div class="legal-links">
+            <a href="politica-de-privacidad.html">Política de Privacidad</a>
+        </div>
+        <div class="copyright">
+            <a href="Copyright">X-CHANGE©</a>
+        </div>
+        <div class="support-contact">
+            <a href="tel:+541155556666">Soporte: (+54) 911-5555-6666</a> | <a href="mailto:soporte@xchange.com.ar">soporte@xchange.com.ar</a>
+        </div>
+    </footer>
     </div>
-    <script src="main.js"></script>
 </body>
 </html>

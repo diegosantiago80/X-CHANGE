@@ -1,0 +1,217 @@
+footer {
+  background-color: #774caf;
+  text-align: center;
+  padding: 25px;
+}
+
+footer .social-links a:hover,
+footer .copyright a:hover,
+footer .legal-links a:hover,
+footer .support-contact a:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s;
+}
+
+footer input:focus {
+  background-color: blanchealmond;
+}
+
+footer textarea:focus {
+  background-color: blanchealmond;
+}
+
+footer input[type=submit]:focus {
+  background-color: #111111;
+}
+
+footer input[type=reset]:focus {
+  background-color: #111111;
+}
+
+.footer-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.footer-container > div {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+a {
+  color: #ffffff;
+}
+
+a:hover {
+  color: aquamarine;
+}
+
+.navbar {
+  background-color: #9534db;
+}
+
+.navbar-brand {
+  color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+
+.logo {
+  max-width: 100px;
+  height: auto;
+}
+
+#cotizacionesTabla {
+  display: none;
+  margin-top: 20px;
+  width: 100%;
+  background-color: grey;
+  margin: auto;
+  text-align: center;
+}
+
+#cotizacionesTabla table {
+  width: 100%;
+  background-color: rgb(3, 139, 148);
+  margin: auto;
+}
+
+#cotizacionesBody td {
+  padding: 8px;
+  background-color: turquoise;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.cliente {
+  margin: 30px auto;
+  background-color: gray;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.ClienteFormContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  padding-top: 100px;
+}
+
+.cliente {
+  width: 45%;
+  margin: 10px;
+}
+
+.ClienteForm {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ClienteForm h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.ClienteForm input,
+.ClienteForm button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.operacion {
+  margin: 30px auto;
+  background-color: gray;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.btn {
+  background-color: #774caf;
+  color: white;
+  border-color: #af4c74;
+}
+
+.operacionesContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.compra,
+.venta {
+  width: 48%;
+}
+
+.operacion {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#resultado {
+  text-align: center;
+  background-color: turquoise;
+  font-size: x-large;
+}
+
+#btnVerOperaciones {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: fit-content;
+  margin-bottom: 50px;
+}
+
+#operacionesTabla {
+  display: none;
+  margin-top: 50px;
+  width: 100%;
+  background-color: grey;
+  margin: auto;
+  text-align: center;
+}
+
+#operacionesTabla table {
+  width: 100%;
+  background-color: rgb(3, 139, 148);
+  margin: auto;
+}
+
+#operacionesBody td {
+  padding: 8px;
+  background-color: turquoise;
+}
+
+/*# sourceMappingURL=styles.css.map */
