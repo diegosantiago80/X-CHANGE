@@ -125,7 +125,7 @@ formularioLogin.addEventListener('submit', function (event) {
     cotizacionesBody.innerHTML = '';
 
     // Obtener las cotizaciones desde el archivo JSON mediante fetch
-    fetch('../data/cotizaciones.json')
+    fetch('./data/cotizaciones.json')
         .then(response => response.json())
         .then(data => {
             const cotizaciones = data.monedas;

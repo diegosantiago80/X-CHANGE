@@ -7,7 +7,7 @@ const clienteSesion = localStorage.getItem('clienteSesion');
 
 // Si no hay sesión activa, redirigir a la página de inicio de sesión
 if (!clienteSesion) {
-    window.location.href = 'index.html';
+    window.location.href = '../index.html';
 }
 
 // Obtener los datos del localStorage (si existen)
