@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
 
+
+
 // pagina index con carga de cliente nuevo y Login de cliente existente 
 
 
@@ -78,7 +80,7 @@ formularioLogin.addEventListener('submit', function (event) {
   const clientes = obtenerClienteAlmacenado();
 
   // Verificar si el usuario y la contraseña coinciden con algún cliente registrado
- 
+  
   const clienteEncontrado = clientes.find(cliente =>
     cliente.usuario.trim() === usr.trim() && cliente.password.trim() === pass.trim()
   );
@@ -96,7 +98,7 @@ formularioLogin.addEventListener('submit', function (event) {
       localStorage.setItem('clienteSesion', JSON.stringify(clienteEncontrado));
 
       // Redirigir al usuario a la pagina de operacion despues de 2 segundos
-      window.location.href = '/pages/operacion.html';
+      window.location.href = '../pages/operacion.html';
     }, 2000); 
   } else {
     confirmacion = Swal.fire({
