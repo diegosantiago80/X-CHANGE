@@ -96,7 +96,7 @@ formularioLogin.addEventListener('submit', function (event) {
       localStorage.setItem('clienteSesion', JSON.stringify(clienteEncontrado));
 
       // Redirigir al usuario a la pagina de operacion despues de 2 segundos
-      window.location.href = 'pages/operacion.html';
+      window.location.href = '/pages/operacion.html';
     }, 2000); 
   } else {
     confirmacion = Swal.fire({
