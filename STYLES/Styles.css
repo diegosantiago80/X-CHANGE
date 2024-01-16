@@ -66,6 +66,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
+  font-family: "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", "Segoe UI", "Helvetica Neue", sans-serif;
 }
 
 main {
@@ -97,6 +98,29 @@ main {
   background-color: turquoise;
 }
 
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+  .logo {
+    max-width: 50px;
+    height: auto;
+  }
+  footer {
+    height: 200px;
+  }
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+  }
+  .social-links,
+  .legal-links,
+  .copyright,
+  .support-contact {
+    margin-bottom: 10px;
+  }
+}
 form {
   display: flex;
   flex-direction: column;
