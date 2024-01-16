@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-
+localStorage.clear();
 
 
 // pagina index con carga de cliente nuevo y Login de cliente existente 
